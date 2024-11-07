@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
 
 public class MainFrame extends JFrame {
 
@@ -88,15 +89,27 @@ public class MainFrame extends JFrame {
 		contentPane.add(textField_2);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro", "Newark"}));
 		comboBox.setForeground(SystemColor.inactiveCaptionBorder);
 		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
 		comboBox.setBounds(94, 155, 118, 22);
 		contentPane.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro", "Newark"}));
 		comboBox_1.setForeground(SystemColor.inactiveCaptionBorder);
 		comboBox_1.setBackground(SystemColor.inactiveCaptionBorder);
 		comboBox_1.setBounds(94, 188, 118, 22);
 		contentPane.add(comboBox_1);
+		
+		JComboBox comboBox_1_1 = new JComboBox();
+		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"", "Economy Class", "Business Class"}));
+		comboBox_1_1.setForeground(SystemColor.inactiveCaptionBorder);
+		comboBox_1_1.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		comboBox_1_1.setBackground(SystemColor.inactiveCaptionBorder);
+		comboBox_1_1.setBounds(94, 221, 118, 22);
+		contentPane.add(comboBox_1_1);
 	}
 }
