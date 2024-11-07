@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 public class MainFrame extends JFrame {
 
@@ -87,8 +88,15 @@ public class MainFrame extends JFrame {
 		contentPane.add(textField_2);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 187, 30, 22);
+		comboBox.setForeground(SystemColor.inactiveCaptionBorder);
+		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
+		comboBox.setBounds(94, 155, 118, 22);
 		contentPane.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setForeground(SystemColor.inactiveCaptionBorder);
+		comboBox_1.setBackground(SystemColor.inactiveCaptionBorder);
+		comboBox_1.setBounds(94, 188, 118, 22);
+		contentPane.add(comboBox_1);
 	}
-
 }
