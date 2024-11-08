@@ -16,7 +16,7 @@ import java.awt.event.*;
 public class MainFrame extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	JPanel contentPane;
+	JPanel contentPane,ticketPane;
 	JTextField fnField;
 	JTextField lnField;
 	JTextField dateField;
@@ -27,7 +27,9 @@ public class MainFrame extends JFrame implements ActionListener{
 	
 	JButton resButton;
 	
-	String fName,lName,date; 
+	String fName,lName,date,origin,dest,airClass; 
+	
+	JLabel lblNewLabel;
 	
 	/**
 	 * Launch the application.
@@ -55,6 +57,19 @@ public class MainFrame extends JFrame implements ActionListener{
 			fName = fnField.getText();
 			lName = lnField.getText();
 			date = dateField.getText();
+			
+			origin = (String) originBox.getSelectedItem();
+			dest = (String) destBox.getSelectedItem();
+			airClass = (String) classBox.getSelectedItem();
+			
+			//create new Panel to display ticket information
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setBounds(100, 100, 450, 300);
+			ticketPane = new JPanel();
+			ticketPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+			setContentPane(ticketPane);
+			ticketPane.setLayout(null);
 		}
 	}
 	
@@ -144,6 +159,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		originBox.setForeground(SystemColor.activeCaptionText);
 		originBox.setBackground(SystemColor.inactiveCaptionBorder);
 		originBox.setBounds(94, 155, 118, 22);
+		originBox.addActionListener(this);
 		contentPane.add(originBox);
 		
 		destBox = new JComboBox();
@@ -152,6 +168,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		destBox.setForeground(SystemColor.activeCaptionText);
 		destBox.setBackground(SystemColor.inactiveCaptionBorder);
 		destBox.setBounds(94, 188, 118, 22);
+		destBox.addActionListener(this);
 		contentPane.add(destBox);
 		
 		classBox = new JComboBox();
@@ -160,6 +177,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		classBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
 		classBox.setBackground(SystemColor.inactiveCaptionBorder);
 		classBox.setBounds(94, 221, 118, 22);
+		classBox.addActionListener(this);
 		contentPane.add(classBox);
 		
 		/*
@@ -171,7 +189,6 @@ public class MainFrame extends JFrame implements ActionListener{
 		resButton.setBounds(276, 195, 108, 48);
 		resButton.addActionListener(this);
 		contentPane.add(resButton);
-		
 		
 	}
 }
