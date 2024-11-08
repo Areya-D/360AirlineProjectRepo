@@ -10,15 +10,25 @@ import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
+	JPanel contentPane;
+	JTextField fnField;
+	JTextField lnField;
+	JTextField dateField;
+	
+	JComboBox classBox;
+	JComboBox destBox;
+	JComboBox originBox;
+	
+	JButton resButton;
+	
+	String fName,lName,date; 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -34,7 +44,21 @@ public class MainFrame extends JFrame {
 			}
 		});
 	}
-
+	
+	
+    /**
+     * create actionListener
+     */
+	@Override
+	public void actionPerformed(ActionEvent e){
+		if(e.getSource()==resButton){
+			fName = fnField.getText();
+			lName = lnField.getText();
+			date = dateField.getText();
+		}
+	}
+	
+	
 	/**
 	 * Create the frame.
 	 */
@@ -47,69 +71,107 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Greensboro Airlines (GSO)");
-		lblNewLabel.setFont(new Font("Segoe UI Historic", Font.PLAIN, 20));
-		lblNewLabel.setBounds(102, 0, 247, 34);
-		contentPane.add(lblNewLabel);
+		/*
+		 *LABELS
+		 */
+		JLabel gsoLbl = new JLabel("Greensboro Airlines (GSO)");
+		gsoLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 20));
+		gsoLbl.setBounds(102, 0, 247, 34);
+		contentPane.add(gsoLbl);
 		
-		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
-		lblFirstName.setBounds(10, 61, 91, 12);
-		contentPane.add(lblFirstName);
+		JLabel fnLbl = new JLabel("First Name:");
+		fnLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		fnLbl.setBounds(10, 61, 91, 12);
+		contentPane.add(fnLbl);
 		
-		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
-		lblLastName.setBounds(10, 93, 91, 12);
-		contentPane.add(lblLastName);
+		JLabel lnLbl = new JLabel("Last Name:");
+		lnLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		lnLbl.setBounds(10, 93, 91, 12);
+		contentPane.add(lnLbl);
 		
-		JLabel lblFirstName_2 = new JLabel("First Name:");
-		lblFirstName_2.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
-		lblFirstName_2.setBounds(10, 128, 91, 12);
-		contentPane.add(lblFirstName_2);
+		JLabel dateLbl = new JLabel("Departure Date:");
+		dateLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		dateLbl.setBounds(10, 128, 91, 12);
+		contentPane.add(dateLbl);
 		
-		textField = new JTextField();
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
-		textField.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		textField.setBounds(94, 58, 118, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel originLbl = new JLabel("Origin:");
+		originLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		originLbl.setBounds(10, 160, 91, 17);
+		contentPane.add(originLbl);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		textField_1.setColumns(10);
-		textField_1.setBackground(SystemColor.inactiveCaptionBorder);
-		textField_1.setBounds(94, 90, 118, 20);
-		contentPane.add(textField_1);
+		JLabel destLbl = new JLabel("Destination:");
+		destLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		destLbl.setBounds(10, 193, 91, 17);
+		contentPane.add(destLbl);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		textField_2.setColumns(10);
-		textField_2.setBackground(SystemColor.inactiveCaptionBorder);
-		textField_2.setBounds(94, 124, 118, 20);
-		contentPane.add(textField_2);
+		JLabel classLbl = new JLabel("Class:");
+		classLbl.setFont(new Font("Segoe UI Historic", Font.PLAIN, 12));
+		classLbl.setBounds(10, 221, 91, 17);
+		contentPane.add(classLbl);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro", "Newark"}));
-		comboBox.setForeground(SystemColor.inactiveCaptionBorder);
-		comboBox.setBackground(SystemColor.inactiveCaptionBorder);
-		comboBox.setBounds(94, 155, 118, 22);
-		contentPane.add(comboBox);
+		/*
+		 *TEXT FIELDS
+		 */
+		fnField = new JTextField();
+		fnField.setBackground(SystemColor.inactiveCaptionBorder);
+		fnField.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		fnField.setBounds(94, 58, 118, 20);
+		contentPane.add(fnField);
+		fnField.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro", "Newark"}));
-		comboBox_1.setForeground(SystemColor.inactiveCaptionBorder);
-		comboBox_1.setBackground(SystemColor.inactiveCaptionBorder);
-		comboBox_1.setBounds(94, 188, 118, 22);
-		contentPane.add(comboBox_1);
+		lnField = new JTextField();
+		lnField.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		lnField.setColumns(10);
+		lnField.setBackground(SystemColor.inactiveCaptionBorder);
+		lnField.setBounds(94, 90, 118, 20);
+		contentPane.add(lnField);
 		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"", "Economy Class", "Business Class"}));
-		comboBox_1_1.setForeground(SystemColor.inactiveCaptionBorder);
-		comboBox_1_1.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
-		comboBox_1_1.setBackground(SystemColor.inactiveCaptionBorder);
-		comboBox_1_1.setBounds(94, 221, 118, 22);
-		contentPane.add(comboBox_1_1);
+		dateField = new JTextField();
+		dateField.setCaretColor(SystemColor.controlDkShadow);
+		dateField.setText("MM/DD/YYYY");
+		dateField.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		dateField.setColumns(10);
+		dateField.setBackground(SystemColor.inactiveCaptionBorder);
+		dateField.setBounds(94, 124, 118, 20);
+		contentPane.add(dateField);
+		
+		/*
+		 *COMBO BOXES
+		 */
+		originBox = new JComboBox();
+		originBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		originBox.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro at 7:00 AM", "Newark at 5:30 PM"}));
+		originBox.setForeground(SystemColor.activeCaptionText);
+		originBox.setBackground(SystemColor.inactiveCaptionBorder);
+		originBox.setBounds(94, 155, 118, 22);
+		contentPane.add(originBox);
+		
+		destBox = new JComboBox();
+		destBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		destBox.setModel(new DefaultComboBoxModel(new String[] {"", "Greensboro at 7:00 PM", "Newark at 9:00 AM"}));
+		destBox.setForeground(SystemColor.activeCaptionText);
+		destBox.setBackground(SystemColor.inactiveCaptionBorder);
+		destBox.setBounds(94, 188, 118, 22);
+		contentPane.add(destBox);
+		
+		classBox = new JComboBox();
+		classBox.setModel(new DefaultComboBoxModel(new String[] {"", "Economy Class", "Business Class"}));
+		classBox.setForeground(SystemColor.activeCaptionText);
+		classBox.setFont(new Font("Segoe UI Historic", Font.PLAIN, 11));
+		classBox.setBackground(SystemColor.inactiveCaptionBorder);
+		classBox.setBounds(94, 221, 118, 22);
+		contentPane.add(classBox);
+		
+		/*
+		 * BUTTON
+		 */
+		resButton = new JButton("RESERVE");
+		resButton.setBackground(SystemColor.inactiveCaptionBorder);
+		resButton.setFont(new Font("Segoe UI Historic", Font.BOLD, 11));
+		resButton.setBounds(276, 195, 108, 48);
+		resButton.addActionListener(this);
+		contentPane.add(resButton);
+		
+		
 	}
 }
