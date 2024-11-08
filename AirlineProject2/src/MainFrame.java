@@ -15,7 +15,7 @@ import java.awt.event.*;
 
 public class MainFrame extends JFrame implements ActionListener{
 
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	JPanel contentPane,ticketPane;
 	JTextField fnField;
 	JTextField lnField;
