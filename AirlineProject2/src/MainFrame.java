@@ -29,7 +29,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	
 	String fName,lName,date,origin,dest,airClass; 
 	
-	JLabel lblNewLabel;
+	
 	
 	/**
 	 * Launch the application.
