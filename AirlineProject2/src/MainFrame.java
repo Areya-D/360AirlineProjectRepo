@@ -1,9 +1,10 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -28,7 +29,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	JButton resButton;
 	
 	String fName,lName,date,origin,dest,airClass; 
-	
+	int seatsF1, seatsF2, price; 
 	
 	
 	/**
@@ -46,38 +47,56 @@ public class MainFrame extends JFrame implements ActionListener{
 			}
 		});
 	}
-	
+
 	
     /**
      * create actionListener
      */
+	
 	@Override
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==resButton){
-			fName = fnField.getText();
-			lName = lnField.getText();
-			date = dateField.getText();
-			
-			origin = (String) originBox.getSelectedItem();
-			dest = (String) destBox.getSelectedItem();
-			airClass = (String) classBox.getSelectedItem();
-			
-			//create new Panel to display ticket information
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 450, 300);
-			ticketPane = new JPanel();
-			ticketPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-			setContentPane(ticketPane);
-			ticketPane.setLayout(null);
+			ReserveTicket();
+			//economy(airClass); 
 		}
 	}
+    //RESERVE TICKET
 	
-	
+	public void ReserveTicket() {
+		
+		if(dest == "Greensboro at 7:00 PM" && origin == "Greensboro at 7:00 AM" 
+				|| dest == "Newark at 9:00 AM" && origin == "Newark at 5:30 PM") {
+			JOptionPane.showMessageDialog(null, "This flight does not exist, please try again", "Error",JOptionPane.ERROR_MESSAGE);
+		}
+		if(this.seatsF1 == 0 || this.seatsF2 == 0) {
+			JOptionPane.showMessageDialog(null, "This flight is full please try again", "Error",JOptionPane.ERROR_MESSAGE);
+
+		}
+		if(dest == "Greensboro at 7:00 PM" && origin == "Newark at 5:30 PM") {
+			seatsF1--; 
+		}
+		else {
+			seatsF2--; 
+		}
+		
+		fName = fnField.getText();
+		lName = lnField.getText();
+		date = dateField.getText();
+		
+		origin = (String) originBox.getSelectedItem();
+		dest = (String) destBox.getSelectedItem();
+		airClass = (String) classBox.getSelectedItem();
+		
+
+	}
+
 	/**
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		 
+		this.seatsF1 = 170;  //set number of seats in constructor 
+		this.seatsF2 = 170;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -159,7 +178,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		originBox.setForeground(SystemColor.activeCaptionText);
 		originBox.setBackground(SystemColor.inactiveCaptionBorder);
 		originBox.setBounds(94, 155, 118, 22);
-		originBox.addActionListener(this);
+		//originBox.addActionListener(this);
 		contentPane.add(originBox);
 		
 		destBox = new JComboBox();
@@ -168,7 +187,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		destBox.setForeground(SystemColor.activeCaptionText);
 		destBox.setBackground(SystemColor.inactiveCaptionBorder);
 		destBox.setBounds(94, 188, 118, 22);
-		destBox.addActionListener(this);
+		//destBox.addActionListener(this);
 		contentPane.add(destBox);
 		
 		classBox = new JComboBox();
@@ -191,4 +210,5 @@ public class MainFrame extends JFrame implements ActionListener{
 		contentPane.add(resButton);
 		
 	}
+
 }
